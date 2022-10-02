@@ -10,8 +10,10 @@ Expected Output: "appleway eatway"
 
 Describe: pigLatinConsonants() 
 
-Test: "It will move the consonant to the end of the word."
+Test: "It will move the consonants to the end of the word."
 Code: pigLatin("pig");
 Expected Output: "igp"
+
+
 
 
