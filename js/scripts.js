@@ -73,10 +73,29 @@ window.addEventListener("load", function() {
 function handleFormSubmission(event) {
   event.preventDefault();
   const input = document.getElementById("inputSentence").value.toLowerCase();
+
+  const inputArray = input.split(" ");
+  const vowels = ["a", "e", "i", "o", "u"];
+
+  for (let i = 0; i < inputArray.length; i++) {
+    for (let j = 0; j < vowels.length; j++) {
+      if (inputArray[i][0] == vowels[j]) {
+        document.getElementById("translation").innerText = pigLatinVowels(input);
+      } else if (inputArray[i][0] != vowels[j]) {
+        document.getElementById("translation").innerText = pigLatinOneConsonant(input);
+      } else if (inputArray[i][0] != vowels[j] && inputArray[i][1] != vowels[j]) {
+        document.getElementById("translation").innerText = pigLatinTwoConsonants(input);
+      } else if (inputArray[i][0] != vowels[j] && inputArray[i][1] != vowels[j] && inputArray[i][2] != vowels[j]) {
+        document.getElementById("translation").innerText = pigLatinThreeConsonants(input);
+      }
+    }
+  };
+
+  for (let i = 0; i < inputArray.length; i++) {
+    if (inputArray[i][0] == 'q' && inputArray[i][1] == 'u') {
+      document.getElementById("translation").innerText = pigLatinQu(input);
+    } 
+  };
+  
   document.getElementById("result").removeAttribute("class");
-  document.getElementById("translation-vowels").innerText = pigLatinVowels(input);
-  document.getElementById("translation-one-const").innerText = pigLatinOneConsonant(input);
-  document.getElementById("translation-two-const").innerText = pigLatinTwoConsonants(input);
-  document.getElementById("translation-three-const").innerText = pigLatinThreeConsonants(input);
-  document.getElementById("translation-qu").innerText = pigLatinQu(input);; 
 };
