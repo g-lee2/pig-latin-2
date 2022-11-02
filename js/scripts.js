@@ -1,7 +1,5 @@
-function pigLatinVowels(input) {
-  const inputArray = input.split(" ");
+function pigLatinVowels(inputArray) {
   const vowels = ["a", "e", "i", "o", "u"];
-  
   for (let i = 0; i < inputArray.length; i++) {
     for (let j = 0; j < vowels.length; j++) {
       if (inputArray[i][0] == vowels[j]) {
@@ -12,10 +10,8 @@ function pigLatinVowels(input) {
   }
 };
 
-function pigLatinOneConsonant(input) {
-  const inputArray = input.split(" ");
+function pigLatinOneConsonant(inputArray) {
   const vowels = ["a", "e", "i", "o", "u"];
-  
   for (let i = 0; i < inputArray.length; i++) {
     for (let j = 0; j < vowels.length; j++) {
       if (inputArray[i][0] != vowels[j]) {
@@ -26,10 +22,8 @@ function pigLatinOneConsonant(input) {
   }
 };
 
-function pigLatinTwoConsonants(input) {
-  const inputArray = input.split(" ");
+function pigLatinTwoConsonants(inputArray) {
   const vowels = ["a", "e", "i", "o", "u"];
-  
   for (let i = 0; i < inputArray.length; i++) {
     for (let j = 0; j < vowels.length; j++) {
       if (inputArray[i][0] != vowels[j] && inputArray[i][1] != vowels[j]) {
@@ -40,8 +34,7 @@ function pigLatinTwoConsonants(input) {
   }
 };
 
-function pigLatinThreeConsonants(input) {
-  const inputArray = input.split(" ");
+function pigLatinThreeConsonants(inputArray) {
   const vowels = ["a", "e", "i", "o", "u"];
   
   for (let i = 0; i < inputArray.length; i++) {
@@ -54,9 +47,7 @@ function pigLatinThreeConsonants(input) {
   }
 };
 
-function pigLatinQu(input) {
-  const inputArray = input.split(" ");
-
+function pigLatinQu(inputArray) {
   for (let i = 0; i < inputArray.length; i++) {
     if (inputArray[i][0] == 'q' && inputArray[i][1] == 'u') {
       let newWord = inputArray[i].toString().slice(2) + inputArray[i][0] + inputArray[i][1] + "ay";
@@ -72,30 +63,26 @@ window.addEventListener("load", function() {
 
 function handleFormSubmission(event) {
   event.preventDefault();
-  const input = document.getElementById("inputSentence").value.toLowerCase();
-
+  const input = document.getElementById("inputWord").value.toLowerCase();
   const inputArray = input.split(" ");
   const vowels = ["a", "e", "i", "o", "u"];
-
   for (let i = 0; i < inputArray.length; i++) {
     for (let j = 0; j < vowels.length; j++) {
       if (inputArray[i][0] == vowels[j]) {
-        document.getElementById("translation").innerText = pigLatinVowels(input);
+        document.getElementById("translation").innerText = pigLatinVowels(inputArray);
       } else if (inputArray[i][0] != vowels[j]) {
-        document.getElementById("translation").innerText = pigLatinOneConsonant(input);
+        document.getElementById("translation").innerText = pigLatinOneConsonant(inputArray);
       } else if (inputArray[i][0] != vowels[j] && inputArray[i][1] != vowels[j]) {
-        document.getElementById("translation").innerText = pigLatinTwoConsonants(input);
+        document.getElementById("translation").innerText = pigLatinTwoConsonants(inputArray);
       } else if (inputArray[i][0] != vowels[j] && inputArray[i][1] != vowels[j] && inputArray[i][2] != vowels[j]) {
-        document.getElementById("translation").innerText = pigLatinThreeConsonants(input);
+        document.getElementById("translation").innerText = pigLatinThreeConsonants(inputArray);
       }
     }
   };
-
   for (let i = 0; i < inputArray.length; i++) {
     if (inputArray[i][0] == 'q' && inputArray[i][1] == 'u') {
-      document.getElementById("translation").innerText = pigLatinQu(input);
+      document.getElementById("translation").innerText = pigLatinQu(inputArray);
     } 
   };
-  
   document.getElementById("result").removeAttribute("class");
 };
